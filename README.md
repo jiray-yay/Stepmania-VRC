@@ -1,5 +1,6 @@
 # Stepmania-VRC
 This project aims to recreate stepmania (https://github.com/stepmania/stepmania) into vrchat. It basically is a combination of a parser for sm files + visualizers and gameplay manager using the parsed data + virtual arcade pads.
+As of now, the compatible game modes and associated virtual arcade pads are "Dance-Single" (similar to ddr and itg), "Dance-double" (similar to ddr and itg but using 2 dance pads) and "Para-single" (similar to paraparaparadise, uses hands instead of feet)
 This project uses Udon# (https://github.com/vrchat-community/UdonSharp)
 
 ## Song/Chart format
@@ -23,7 +24,7 @@ Calculating the visualization range (partition position to time and vice-versa) 
 This project is under the MIT License, so basically you can just do anything with it for free!
 
 ## Other links
-A demo VRC world is up if you want to try the prefab, be sure to calibrate the settings before playing (square button below the play button to make settings appears behing the pads): https://vrchat.com/home/launch?worldId=wrld_2cbe2c07-15f1-4c66-a5b9-aac37aa0446d
+A demo VRC world with Dance-Single and Para-Single examples is up if you want to try the prefab, be sure to calibrate the settings before playing (square button below the play button to make settings appears behing the pads): https://vrchat.com/home/launch?worldId=wrld_2cbe2c07-15f1-4c66-a5b9-aac37aa0446d
 You can also find this project on booth: https://jiraymin.booth.pm/items/3652408
 And here's the promotion tweet of this project: https://twitter.com/Jiraymin/status/1492582105854926850
 

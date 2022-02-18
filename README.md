@@ -1,3 +1,7 @@
+# Stepmania-VRC
+This project aims to recreate stepmania (https://github.com/stepmania/stepmania) into vrchat. It basically is a combination of a parser for sm files + visualizers and gameplay manager using the parsed data + virtual arcade pads.
+This project uses Udon# (https://github.com/vrchat-community/UdonSharp)
+
 ## Song/Chart format
 Songs and charts needs to be embedded inside the world. Chart format is Stepmania's .sm format.
 Stepmania is a rhythm game engine/simulator mainly (but not only) used for ddr-like games, it had multiple derivation of it's file format (such as the .ssc format for stepmania 5) but this VRC simulator only works with the .sm format.

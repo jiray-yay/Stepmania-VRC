@@ -200,6 +200,8 @@ namespace StepmaniaVRC
                 //Parafiles have awful formatting, let's try to fix the bad lines
                 if (lines[i].Trim().StartsWith("//"))
                     continue;//commentary line=>exit
+                if (lines[i].Trim().Length == 0)//blank line->exit
+                    continue;
 
                 //NOTES
                 if (notesSection)
@@ -216,6 +218,8 @@ namespace StepmaniaVRC
                                 partitionInfos_GameType[currentPartition] = 5;
                             else if (lines[i].ToLower().Contains("dance-double"))
                                 partitionInfos_GameType[currentPartition] = 8;
+                            else
+                                partitionInfos_GameType[currentPartition] = 1;//not supported game mode=>will not show in difficulty selection
                             break;
                         //Description/author
                         case 2:

@@ -20,6 +20,7 @@ namespace StepmaniaVRC
         public Text colliderSizeInfo;
         public Slider sliderrotationOffsetX, sliderrotationOffsetY, sliderrotationOffsetZ, handOffsetSlider;
         public Text rotationOffsetXInfo, rotationOffsetYInfo, rotationOffsetZInfo, handOffsetInfo;
+        public Toggle toggleHaptics;
 
         float colliderSize = 0.1f;
         Vector3 rotationOffset = new Vector3(270,0,0);
@@ -81,6 +82,9 @@ namespace StepmaniaVRC
                 paraPad.rotationOffset = rotationOffset;
                 paraPad.colliderSize = colliderSize;
                 paraPad.handOffset = handOffset;
+
+                //putting haptics here is a bit dirty but not significant enough for cleaner separate function
+                paraPad.useHaptics = toggleHaptics.isOn;
             }
         }
 

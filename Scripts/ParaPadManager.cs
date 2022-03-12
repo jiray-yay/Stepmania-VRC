@@ -28,6 +28,9 @@ namespace StepmaniaVRC
         [HideInInspector]
         public float colliderSize = 0.1f, handOffset = -0.2f, y_base = 3f;//Setting of the user for the "collider" size and position
 
+        [HideInInspector]
+        public bool useHaptics = false;
+
         void Start()
         {
             areActive = new bool[paraPadArrows.Length];
@@ -84,6 +87,9 @@ namespace StepmaniaVRC
                     foreach (int bone in toCheck)
                     {
                         scoreManager.areActive[i] = paraPadArrows[i].checkInside(player.GetBonePosition((HumanBodyBones)bone), player.GetBoneRotation((HumanBodyBones)bone), rotationOffset, handOffset, colliderSize);
+                        if (useHaptics)//using haptics option->vibrate if entering
+                            if ((!wereActive[i]) && scoreManager.areActive[i])
+                                player.PlayHapticEventInHand(bone == (int)HumanBodyBones.LeftHand ? VRC_Pickup.PickupHand.Left : VRC_Pickup.PickupHand.Right, 1f / 60f, 1, 1);
                         if (scoreManager.areActive[i])
                             break;
                     }

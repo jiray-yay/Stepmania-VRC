@@ -17,7 +17,12 @@ namespace StepmaniaVRC
 
         }
 
-        void Interact()
+        public override void Interact()
+        {
+            DoHideShow();
+        }
+
+        public void DoHideShow()
         {
             toShowHide.SetActive(!toShowHide.activeSelf);
         }

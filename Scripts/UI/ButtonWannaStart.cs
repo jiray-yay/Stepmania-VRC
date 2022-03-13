@@ -17,7 +17,12 @@ namespace StepmaniaVRC
 
         }
 
-        void Interact()
+        public override void Interact()
+        {
+            DoWannaStart();
+        }
+
+        public void DoWannaStart()
         {
             Networking.SetOwner(Networking.LocalPlayer, stepfilesManager.gameObject);
             if (!stepfilesManager.hasStarted)

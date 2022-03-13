@@ -39,7 +39,10 @@ namespace StepmaniaVRC
 
         long timestamp;//just a debug tool to know amount of time taken by file loading
         public ManagerDifficultyButtons[] managerDifficulties;//DifficultyButtonsManagers associated to the playable visualizers/scoreManagers, should be passed in scene and have he same size as visualizers/scoreManagers
-        
+
+        [HideInInspector]
+        public float audioOffset=0, drawOffset=0;//Options from the user to compensate eventual audio/input/display lag
+
         /// <summary>
         /// Instantiate most things and build the links between the objects passed in scene
         /// </summary>
@@ -94,6 +97,7 @@ namespace StepmaniaVRC
             return true;
         }
 
+        private long latestAudioStart = 0;//to avoid desync starts
         void Update()
         {
             if (initReaders())//Reading sm files before doing anything else
@@ -113,6 +117,7 @@ namespace StepmaniaVRC
                     return;
                 audioSource.clip = audioFilesForSM[music];
                 timestampAudioStart = System.DateTime.UtcNow.Ticks;
+                latestAudioStart = timestampAudioStart;//owner so have to change that right away without verifications
                 resetScores();
                 audioSource.Play();
                 audioSource.time = 0;
@@ -125,11 +130,15 @@ namespace StepmaniaVRC
             {
                 if (!audioSourceDidStart)//song has started for the owner but not for this instance->start the song accounting the delay
                 {
-                    audioSource.clip = audioFilesForSM[music];
-                    resetScores();
-                    audioSource.Play();
-                    audioSource.time = (System.DateTime.UtcNow.Ticks - timestampAudioStart) / (10000f * 1000f);//timeAudio;//Sync if someone is joining
-                    audioSourceDidStart = true;
+                    if (timestampAudioStart > latestAudioStart)//timestampStart Did Update
+                    {
+                        latestAudioStart = timestampAudioStart;//can now update latestAudioStart
+                        audioSource.clip = audioFilesForSM[music];
+                        resetScores();
+                        audioSource.Play();
+                        audioSource.time = (System.DateTime.UtcNow.Ticks - timestampAudioStart) / (10000f * 1000f);//timeAudio;//Sync if someone is joining
+                        audioSourceDidStart = true;
+                    }
                 }
 
                 if (!audioSource.isPlaying)
@@ -145,7 +154,7 @@ namespace StepmaniaVRC
 
                 foreach (var visualizer in visualizers)//song is still playing->need to visualize the charts
                 {
-                    visualizer.Visualize(audioSource.time);
+                    visualizer.Visualize(audioSource.time+audioOffset+drawOffset);
                 }
             }
         }

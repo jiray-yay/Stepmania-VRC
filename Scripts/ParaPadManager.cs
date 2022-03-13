@@ -119,7 +119,7 @@ namespace StepmaniaVRC
             {
                 if (scoreManager.stepfilesManager.hasStarted && scoreManager.stepfilesManager.audioSource.isPlaying)
                 {
-                    scoreManager.processScore(scoreManager.stepfilesManager.audioSource.time);
+                    scoreManager.processScore(scoreManager.stepfilesManager.audioSource.time + scoreManager.stepfilesManager.audioOffset);
                 }
             }
         }

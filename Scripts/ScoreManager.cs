@@ -76,7 +76,7 @@ namespace StepmaniaVRC
             if (stepfilesManager == null)
                 return;
             if (stepfilesManager.hasStarted && stepfilesManager.audioSource.isPlaying)
-                processScore(stepfilesManager.audioSource.time);
+                processScore(stepfilesManager.audioSource.time + stepfilesManager.audioOffset);
             if (lastChangeTime != 0 || (stepfilesManager.hasStarted && stepfilesManager.audioSource.isPlaying))
                 displayScore();
         }
